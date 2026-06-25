@@ -9,12 +9,30 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UcapanRouteImport } from './routes/ucapan'
+import { Route as PesanRouteImport } from './routes/pesan'
+import { Route as MassageRouteImport } from './routes/massage'
+import { Route as KueRouteImport } from './routes/kue'
+import { Route as BungaRouteImport } from './routes/bunga'
 import { Route as IndexRouteImport } from './routes/index'
 
-const UcapanRoute = UcapanRouteImport.update({
-  id: '/ucapan',
-  path: '/ucapan',
+const PesanRoute = PesanRouteImport.update({
+  id: '/pesan',
+  path: '/pesan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MassageRoute = MassageRouteImport.update({
+  id: '/massage',
+  path: '/massage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KueRoute = KueRouteImport.update({
+  id: '/kue',
+  path: '/kue',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BungaRoute = BungaRouteImport.update({
+  id: '/bunga',
+  path: '/bunga',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,37 +43,70 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/ucapan': typeof UcapanRoute
+  '/bunga': typeof BungaRoute
+  '/kue': typeof KueRoute
+  '/massage': typeof MassageRoute
+  '/pesan': typeof PesanRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/ucapan': typeof UcapanRoute
+  '/bunga': typeof BungaRoute
+  '/kue': typeof KueRoute
+  '/massage': typeof MassageRoute
+  '/pesan': typeof PesanRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/ucapan': typeof UcapanRoute
+  '/bunga': typeof BungaRoute
+  '/kue': typeof KueRoute
+  '/massage': typeof MassageRoute
+  '/pesan': typeof PesanRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ucapan'
+  fullPaths: '/' | '/bunga' | '/kue' | '/massage' | '/pesan'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ucapan'
-  id: '__root__' | '/' | '/ucapan'
+  to: '/' | '/bunga' | '/kue' | '/massage' | '/pesan'
+  id: '__root__' | '/' | '/bunga' | '/kue' | '/massage' | '/pesan'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  UcapanRoute: typeof UcapanRoute
+  BungaRoute: typeof BungaRoute
+  KueRoute: typeof KueRoute
+  MassageRoute: typeof MassageRoute
+  PesanRoute: typeof PesanRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/ucapan': {
-      id: '/ucapan'
-      path: '/ucapan'
-      fullPath: '/ucapan'
-      preLoaderRoute: typeof UcapanRouteImport
+    '/pesan': {
+      id: '/pesan'
+      path: '/pesan'
+      fullPath: '/pesan'
+      preLoaderRoute: typeof PesanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/massage': {
+      id: '/massage'
+      path: '/massage'
+      fullPath: '/massage'
+      preLoaderRoute: typeof MassageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kue': {
+      id: '/kue'
+      path: '/kue'
+      fullPath: '/kue'
+      preLoaderRoute: typeof KueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bunga': {
+      id: '/bunga'
+      path: '/bunga'
+      fullPath: '/bunga'
+      preLoaderRoute: typeof BungaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +121,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  UcapanRoute: UcapanRoute,
+  BungaRoute: BungaRoute,
+  KueRoute: KueRoute,
+  MassageRoute: MassageRoute,
+  PesanRoute: PesanRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

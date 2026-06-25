@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react';
 
 // Komponen Ikon Hadiah (Sebelah Kiri)
@@ -42,6 +42,7 @@ export const Route = createFileRoute('/')({
 })
 
 export default function App() {
+  const navigate = useNavigate();
   const [isOpened, setIsOpened] = useState(false);
 
   return (
@@ -218,7 +219,7 @@ export default function App() {
 
               {/* Click Here Button - goes back to envelope */}
               <button
-                onClick={() => setIsOpened(false)}
+                onClick={() => navigate({ to: "/massage" })}
                 className="px-6 sm:px-8 py-2 sm:py-3 bg-white/20 backdrop-blur-sm border border-white/40 text-white rounded-full hover:bg-white/30 transition-all duration-300 font-serif tracking-widest text-xs sm:text-sm uppercase animate-fade-in-up hover:scale-105"
                 style={{ animationDelay: '0.9s', opacity: 0 }}
               >
